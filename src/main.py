@@ -8,6 +8,16 @@ app = FastAPI(title="University Course Catalog MCP Server")
 # Initialize the MCP Server using FastMCP
 mcp = FastMCP("university-catalog")
 
+from src.tools.search_courses import search_courses
+from src.tools.get_prerequisites import get_prerequisites
+from src.tools.lookup_instructor import lookup_instructor
+from src.tools.prerequisite_graph import get_prerequisite_graph
+
+mcp.add_tool(search_courses)
+mcp.add_tool(get_prerequisites)
+mcp.add_tool(lookup_instructor)
+mcp.add_tool(get_prerequisite_graph)
+
 # Health check endpoint required by the prompt
 @app.get("/health")
 def health_check():
