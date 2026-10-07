@@ -23,6 +23,22 @@ from src.resources import get_course_descriptions, get_department_directory
 mcp.resource("resource://course_descriptions", name="course_descriptions")(get_course_descriptions)
 mcp.resource("resource://department_directory", name="department_directory")(get_department_directory)
 
+# Register MCP Prompt Template
+@mcp.prompt(
+    name="course_comparison_template",
+    description="A structured prompt that guides an LLM to compare two university courses in detail."
+)
+def course_comparison_template(course_code_1: str, course_code_2: str) -> list[dict]:
+    """Generates a comparison prompt for two courses given their codes."""
+    text = (
+        "Create a table comparing the following two courses: "
+        "{{course_code_1}} and {{course_code_2}}. "
+        f"(Resolved values: course_code_1={course_code_1}, course_code_2={course_code_2}). "
+        "Include columns for Title, Credits, Description, and Prerequisites. "
+        "Use the available MCP tools to fetch information for both courses before building the table."
+    )
+    return [{"role": "user", "content": text}]
+
 # Health check endpoint required by the prompt
 @app.get("/health")
 def health_check():
