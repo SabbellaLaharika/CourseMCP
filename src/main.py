@@ -1,9 +1,17 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from mcp.server.fastmcp import FastMCP
 import uvicorn
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Run database seeding on startup before accepting requests."""
+    from data.seed import seed_data
+    seed_data()
+    yield
+
 # Initialize FastAPI app
-app = FastAPI(title="University Course Catalog MCP Server")
+app = FastAPI(title="University Course Catalog MCP Server", lifespan=lifespan)
 
 # Initialize the MCP Server using FastMCP
 mcp = FastMCP("university-catalog")
