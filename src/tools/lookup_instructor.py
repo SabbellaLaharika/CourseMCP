@@ -16,6 +16,7 @@ def lookup_instructor(instructor_name: str) -> LookupInstructorOutput | ErrorOut
         return LookupInstructorOutput(
             name=instructor.name,
             email=instructor.email,
+            office=instructor.office,
             department_name=instructor.department.name
         )
     finally:

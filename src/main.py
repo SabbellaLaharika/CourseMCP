@@ -26,6 +26,10 @@ mcp.add_tool(get_prerequisites)
 mcp.add_tool(lookup_instructor)
 mcp.add_tool(get_prerequisite_graph)
 
+# Register custom advanced tools
+from src.tools.advanced_search import search_instructors
+mcp.add_tool(search_instructors)
+
 # Register MCP Resources
 from src.resources import get_course_descriptions, get_department_directory
 mcp.resource("resource://course_descriptions", name="course_descriptions")(get_course_descriptions)

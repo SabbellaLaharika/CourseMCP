@@ -36,6 +36,7 @@ class LookupInstructorInput(BaseModel):
 class LookupInstructorOutput(BaseModel):
     name: str
     email: str
+    office: Optional[str] = None
     department_name: str
 
 # Generic error structure

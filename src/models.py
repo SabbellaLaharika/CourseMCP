@@ -26,6 +26,7 @@ class Instructor(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     email = Column(String, nullable=False)
+    office = Column(String, nullable=True)
     department_id = Column(Integer, ForeignKey("departments.id"))
 
     department = relationship("Department", back_populates="instructors")

@@ -41,6 +41,13 @@ This application is fully containerized and orchestrated with Docker Compose for
    curl http://localhost:8080/health
    ```
 
+5. **Interactive Testing with the MCP Inspector:**
+   Launch the official MCP Inspector UI to interactively test all tools, resources, and prompts — no code required:
+   ```bash
+   npx @modelcontextprotocol/inspector http://localhost:8080/mcp/sse
+   ```
+   Then open the URL shown in your terminal (usually **http://127.0.0.1:6274**) in your browser to explore the server live.
+
 ---
 
 ## 🧰 Available MCP Tools
